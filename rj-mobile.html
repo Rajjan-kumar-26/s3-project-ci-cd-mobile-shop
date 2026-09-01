@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RJ Mobile — Banda</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --charcoal:#14171C;
+    --charcoal-2:#1D2128;
+    --cream:#F1EEE7;
+    --blue:#2E6BFF;
+    --blue-dim:#1B3E99;
+    --amber:#FFB020;
+    --slate:#6B7280;
+    --white:#FDFCFA;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--cream);
+    color:var(--charcoal);
+    line-height:1.5;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(20,23,28,0.92);
+    backdrop-filter:blur(8px);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1080px;margin:0 auto;}
+  .logo{color:var(--white);font-family:'Space Grotesk';font-weight:700;font-size:1.25rem;}
+  .logo span{color:var(--blue);}
+  .nav-links{display:flex;gap:28px;}
+  .nav-links a{color:#C9CDD4;font-size:0.92rem;font-weight:500;transition:color .15s;}
+  .nav-links a:hover{color:var(--white);}
+  .nav-cta{
+    background:var(--amber);color:var(--charcoal);
+    padding:9px 18px;border-radius:4px;font-weight:600;font-size:0.88rem;
+  }
+  @media(max-width:640px){.nav-links{display:none;}}
+
+  /* HERO */
+  .hero{
+    background:var(--charcoal);
+    color:var(--white);
+    position:relative;
+    overflow:hidden;
+    padding:100px 24px 90px;
+  }
+  .glow{
+    position:absolute;
+    top:-120px;right:-140px;
+    width:520px;height:520px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(46,107,255,0.55) 0%, rgba(46,107,255,0.12) 45%, transparent 70%);
+    animation:pulse 4.5s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:0.6;transform:scale(1);}
+    50%{opacity:1;transform:scale(1.06);}
+  }
+  .hero-inner{max-width:1080px;margin:0 auto;position:relative;z-index:2;}
+  .eyebrow-tag{
+    display:inline-block;color:var(--blue);
+    font-size:0.85rem;font-weight:600;margin-bottom:18px;
+    border-left:2px solid var(--blue);padding-left:10px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,5.5vw,4rem);
+    font-weight:700;
+    max-width:640px;
+    margin-bottom:20px;
+  }
+  .hero p{
+    color:#B9BFC9;font-size:1.08rem;max-width:480px;margin-bottom:34px;
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--amber);color:var(--charcoal);
+    padding:13px 26px;border-radius:4px;font-weight:600;font-size:0.95rem;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-secondary{
+    border:1px solid #3A3F48;color:var(--white);
+    padding:13px 26px;border-radius:4px;font-weight:600;font-size:0.95rem;
+  }
+
+  .hero-meta{
+    display:flex;gap:40px;margin-top:64px;flex-wrap:wrap;
+    border-top:1px solid #2A2E36;padding-top:24px;
+  }
+  .hero-meta div{font-size:0.88rem;color:#8B909A;}
+  .hero-meta strong{display:block;color:var(--white);font-family:'Space Grotesk';font-size:1.35rem;font-weight:600;}
+
+  /* SERVICES - spec-sheet row */
+  .services{padding:80px 24px;}
+  .section-head{margin-bottom:44px;max-width:520px;}
+  .section-head .label{color:var(--blue);font-weight:600;font-size:0.85rem;margin-bottom:10px;display:block;}
+  .section-head h2{font-size:2rem;}
+
+  .service-row{
+    border-top:1px solid #D8D3C8;
+  }
+  .service-item{
+    display:grid;grid-template-columns:60px 1fr 1fr;gap:20px;
+    padding:26px 0;border-bottom:1px solid #D8D3C8;align-items:baseline;
+  }
+  .service-item .num{color:var(--blue);font-family:'Space Grotesk';font-weight:600;}
+  .service-item h3{font-size:1.15rem;}
+  .service-item p{color:var(--slate);font-size:0.95rem;}
+  @media(max-width:640px){
+    .service-item{grid-template-columns:1fr;gap:6px;}
+    .service-item .num{display:none;}
+  }
+
+  /* PRODUCTS - shelf grid */
+  .products{background:var(--white);padding:80px 24px;}
+  .shelf{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1px;background:#E4E0D6;border:1px solid #E4E0D6;margin-top:10px;
+  }
+  .shelf-item{
+    background:var(--white);padding:32px 24px;
+  }
+  .shelf-item .tag{
+    color:var(--slate);font-size:0.78rem;font-weight:500;margin-bottom:8px;
+  }
+  .shelf-item h3{font-size:1.2rem;margin-bottom:10px;}
+  .shelf-item p{color:var(--slate);font-size:0.92rem;}
+
+  /* WHY / TRUST */
+  .why{padding:80px 24px;}
+  .why-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:36px;margin-top:40px;
+  }
+  .why-grid h3{font-size:1.6rem;color:var(--blue);margin-bottom:6px;}
+  .why-grid p{color:var(--slate);font-size:0.92rem;}
+
+  /* CTA / CONTACT */
+  .contact{
+    background:var(--charcoal);color:var(--white);
+    padding:80px 24px;text-align:left;
+  }
+  .contact-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:32px;}
+  .contact h2{font-size:2rem;max-width:440px;}
+  .contact-info{display:flex;flex-direction:column;gap:10px;align-items:flex-start;}
+  .contact-info a{
+    background:var(--amber);color:var(--charcoal);
+    padding:14px 28px;border-radius:4px;font-weight:600;font-size:1rem;
+  }
+  .contact-info span{color:#9AA0AB;font-size:0.9rem;}
+
+  footer{
+    background:var(--charcoal-2);color:#787E88;
+    padding:24px;text-align:center;font-size:0.82rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">RJ <span>Mobile</span></div>
+    <div class="nav-links">
+      <a href="#services">Repairs</a>
+      <a href="#products">Shop</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="https://wa.me/917458944200" target="_blank">WhatsApp Us</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="glow"></div>
+  <div class="hero-inner">
+    <span class="eyebrow-tag">Banda's Mobile Shop</span>
+    <h1>New phones, honest repairs, same-day service.</h1>
+    <p>RJ Mobile sells the latest smartphones and fixes the ones you already own — screens, batteries, and everything in between.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://wa.me/917458944200" target="_blank">Chat on WhatsApp →</a>
+      <a class="btn-secondary" href="tel:+917458944200">Call 74589 44200</a>
+    </div>
+    <div class="hero-meta">
+      <div><strong>Same Day</strong>Most repairs done in hours</div>
+      <div><strong>All Brands</strong>Android &amp; iPhone serviced</div>
+      <div><strong>Banda</strong>Walk-ins welcome</div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">What We Fix</span>
+      <h2>Repairs that don't take a week.</h2>
+    </div>
+    <div class="service-row">
+      <div class="service-item">
+        <span class="num">01</span>
+        <h3>Screen Replacement</h3>
+        <p>Cracked or dead display, swapped with quality parts while you wait.</p>
+      </div>
+      <div class="service-item">
+        <span class="num">02</span>
+        <h3>Battery Replacement</h3>
+        <p>Phone dying by noon? New battery, tested before you leave the shop.</p>
+      </div>
+      <div class="service-item">
+        <span class="num">03</span>
+        <h3>Charging Port &amp; Speaker</h3>
+        <p>Loose charging, no sound, mic issues — diagnosed and fixed on the spot.</p>
+      </div>
+      <div class="service-item">
+        <span class="num">04</span>
+        <h3>Software &amp; Data Recovery</h3>
+        <p>Frozen phones, forgotten patterns, and recovering photos you thought were gone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">In The Shop</span>
+      <h2>New phones and accessories.</h2>
+    </div>
+    <div class="shelf">
+      <div class="shelf-item">
+        <div class="tag">Smartphones</div>
+        <h3>Latest Android Phones</h3>
+        <p>Budget to flagship — brands updated regularly, with billing and warranty.</p>
+      </div>
+      <div class="shelf-item">
+        <div class="tag">Accessories</div>
+        <h3>Cases, Chargers &amp; Cables</h3>
+        <p>Original and compatible accessories for every phone we sell or service.</p>
+      </div>
+      <div class="shelf-item">
+        <div class="tag">Recharge</div>
+        <h3>Recharge &amp; Bill Payment</h3>
+        <p>Prepaid recharge, DTH, and bill payments — quick counter service.</p>
+      </div>
+      <div class="shelf-item">
+        <div class="tag">Exchange</div>
+        <h3>Old Phone Exchange</h3>
+        <p>Trade in your old phone toward a new one, priced fairly on the spot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">Why RJ Mobile</span>
+      <h2>Local, upfront, and around when you need us.</h2>
+    </div>
+    <div class="why-grid">
+      <div>
+        <h3>No Guesswork Pricing</h3>
+        <p>You get the repair cost before we open the phone, not after.</p>
+      </div>
+      <div>
+        <h3>Genuine Parts</h3>
+        <p>We tell you what's original and what's compatible — your choice, your price.</p>
+      </div>
+      <div>
+        <h3>Right Here in Banda</h3>
+        <p>No courier, no waiting weeks. Walk in, get it fixed, walk out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <h2>Bring your phone in, or message us first.</h2>
+    <div class="contact-info">
+      <a href="https://wa.me/917458944200" target="_blank">Message on WhatsApp</a>
+      <span>Or call: +91 74589 44200</span>
+      <span>RJ Mobile, Banda, Uttar Pradesh</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 RJ Mobile, Banda. All rights reserved.
+</footer>
+
+</body>
+</html>
